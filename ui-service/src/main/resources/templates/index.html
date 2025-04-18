@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Railway Token Counter</title>
+  <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+</head>
+<body>
+  <h2>Railway Token System</h2>
+
+  <!-- HTMX button that loads response into #result -->
+  <button 
+    hx-get="/generate/1" 
+    hx-target="#result" 
+    hx-swap="innerHTML">
+    Get Token for Counter 1
+  </button>
+
+  <!-- Token display area -->
+  <div id="result"></div>
+</body>
+</html>

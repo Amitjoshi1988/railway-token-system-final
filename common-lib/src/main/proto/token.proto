@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.railway.grpc";
+option java_outer_classname = "TokenServiceProto";
+
+message TokenRequest {
+  int32 counter_id = 1;
+}
+
+message TokenResponse {
+  string token_id = 1;
+}
+
+service TokenService {
+  rpc generateToken(TokenRequest) returns (TokenResponse);
+}

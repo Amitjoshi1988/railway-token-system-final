@@ -1,0 +1,3 @@
+com\railway\uiservice\UIServiceApplication.class
+com\railway\uiservice\controller\UIController.class
+com\railway\uiservice\service\UIGrpcClient.class

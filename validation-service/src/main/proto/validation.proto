@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.railway.validationservice.grpc";
+option java_outer_classname = "ValidationServiceProto";
+
+message SomeInput {
+  int32 counter_id = 1;
+}
+
+message ValidationResult {
+  bool valid = 1;
+}
+
+service SomeCustomGrpcValidator {
+  rpc validate(SomeInput) returns (ValidationResult);
+}

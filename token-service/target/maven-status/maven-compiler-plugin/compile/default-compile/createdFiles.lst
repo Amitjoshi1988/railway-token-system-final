@@ -1,0 +1,3 @@
+com\railway\tokenservice\TokenServiceApplication.class
+com\railway\tokenservice\grpc\TokenServiceImpl.class
+com\railway\tokenservice\core\TokenGenerator.class
