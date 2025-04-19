@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>io.r2dbc</groupId>
 			<artifactId>r2dbc-postgresql</artifactId>
-			<version>0.8.13.RELEASE</version> 
+			<version>0.8.13.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -25,4 +25,21 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.4.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal> <!-- Makes JAR executable -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
 </project>

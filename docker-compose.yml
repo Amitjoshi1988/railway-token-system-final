@@ -1,0 +1,76 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: railway-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: suadmin
+      POSTGRES_DB: tokendb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - railway-net
+
+  db-service:
+    build:
+      context: ./db-service
+    container_name: db-service
+    ports:
+      - "8097:8097"
+    depends_on:
+      - postgres
+    networks:
+      - railway-net
+
+  token-service:
+    build:
+      context: ./token-service
+    container_name: token-service
+    ports:
+      - "9091:9091"
+    depends_on:
+      - db-service
+    networks:
+      - railway-net
+
+  validation-service:
+    build:
+      context: ./validation-service
+    container_name: validation-service
+    ports:
+      - "8099:8099"
+    networks:
+      - railway-net
+
+  ui-service:
+    build:
+      context: ./ui-service
+    container_name: ui-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - token-service
+    networks:
+      - railway-net
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8084:8084"
+    depends_on:
+      - ui-service
+    networks:
+      - railway-net
+
+volumes:
+  pgdata:
+
+networks:
+  railway-net:
+    driver: bridge
